@@ -3,254 +3,221 @@ export interface Question {
   type: 'pattern' | 'logic' | 'verbal' | 'math' | 'spatial';
   question: string;
   options: string[];
-  correctAnswer: number;
+  correctAnswer: number; // Index of the correct option (0-3)
   difficulty: number; // 1-5
   timeLimit: number; // seconds
 }
 
 export const questions: Question[] = [
-  // Easy warmup (1-3) - Build confidence
+  // --- WARMUP (1-4): Engages the user, establishes the formats ---
   {
     id: 1,
     type: 'pattern',
-    question: 'What comes next? 2, 4, 6, 8, __',
-    options: ['9', '10', '12', '14'],
-    correctAnswer: 1,
-    difficulty: 1,
-    timeLimit: 20,
+    question: 'What comes next? 2, 3, 5, 9, 17, __',
+    options: ['25', '32', '33', '35'],
+    correctAnswer: 2, // 33 (Differences are powers of 2: +1, +2, +4, +8, +16)
+    difficulty: 2,
+    timeLimit: 30,
   },
   {
     id: 2,
     type: 'verbal',
-    question: 'Which word does NOT belong?',
-    options: ['Apple', 'Banana', 'Carrot', 'Orange'],
-    correctAnswer: 2,
-    difficulty: 1,
-    timeLimit: 20,
-  },
-  {
-    id: 3,
-    type: 'logic',
-    question: 'If all roses are flowers, and some flowers fade quickly, which is true?',
-    options: [
-      'All roses fade quickly',
-      'Some roses may fade quickly',
-      'No roses fade quickly',
-      'Roses are not flowers'
-    ],
+    question: 'EPHEMERAL is to FLEETING as PERENNIAL is to:',
+    options: ['Plant', 'Enduring', 'Seasonal', 'Beautiful'],
     correctAnswer: 1,
-    difficulty: 2,
-    timeLimit: 30,
-  },
-
-  // Medium (4-10) - Core engagement
-  {
-    id: 4,
-    type: 'pattern',
-    question: 'What comes next? 1, 1, 2, 3, 5, 8, __',
-    options: ['11', '12', '13', '15'],
-    correctAnswer: 2,
     difficulty: 2,
     timeLimit: 25,
   },
   {
-    id: 5,
-    type: 'spatial',
-    question: 'If you fold a square paper in half diagonally, what shape do you get?',
-    options: ['Rectangle', 'Triangle', 'Pentagon', 'Trapezoid'],
-    correctAnswer: 1,
+    id: 3,
+    type: 'math',
+    question: 'A bat and a ball cost $1.10 in total. The bat costs exactly $1.00 more than the ball. How much does the ball cost?',
+    options: ['$0.10', '$0.05', '$0.15', '$1.00'],
+    correctAnswer: 1, // $0.05
     difficulty: 2,
-    timeLimit: 20,
+    timeLimit: 30,
+  },
+  {
+    id: 4,
+    type: 'spatial',
+    question: 'If you fold a perfectly square piece of paper in half horizontally, then in half vertically, and punch one hole through the center of the resulting square, how many holes will the paper have when completely unfolded?',
+    options: ['1', '2', '4', '8'],
+    correctAnswer: 2, // 4
+    difficulty: 2,
+    timeLimit: 25,
+  },
+
+  // --- MEDIUM (5-12): Requires focused thought and scratchpad logic ---
+  {
+    id: 5,
+    type: 'logic',
+    question: 'If no A are B, and all B are C, which of the following MUST be true?',
+    options: [
+      'No A are C',
+      'Some C are not A',
+      'All C are B',
+      'Some A are C'
+    ],
+    correctAnswer: 1, 
+    difficulty: 3,
+    timeLimit: 40,
   },
   {
     id: 6,
-    type: 'math',
-    question: 'A shirt costs $20 after a 20% discount. What was the original price?',
-    options: ['$24', '$25', '$26', '$28'],
-    correctAnswer: 1,
+    type: 'pattern',
+    question: 'What comes next? 1, 2, 6, 15, 31, __',
+    options: ['45', '56', '62', '64'],
+    correctAnswer: 1, // 56 (Differences are squares: +1, +4, +9, +16, +25)
     difficulty: 3,
     timeLimit: 35,
   },
   {
     id: 7,
-    type: 'logic',
-    question: 'Tom is taller than Jim. Jim is taller than Sam. Who is the shortest?',
-    options: ['Tom', 'Jim', 'Sam', 'Cannot determine'],
-    correctAnswer: 2,
-    difficulty: 2,
-    timeLimit: 25,
+    type: 'verbal',
+    question: 'Rearrange the letters "CIFAIPC" to form a word. What category does this word belong to?',
+    options: ['An Animal', 'A City', 'An Ocean', 'A Country'],
+    correctAnswer: 2, // Ocean (PACIFIC)
+    difficulty: 3,
+    timeLimit: 30,
   },
   {
     id: 8,
-    type: 'verbal',
-    question: 'DOCTOR is to PATIENT as TEACHER is to:',
-    options: ['School', 'Student', 'Education', 'Classroom'],
-    correctAnswer: 1,
-    difficulty: 2,
-    timeLimit: 25,
+    type: 'logic',
+    question: 'Five runners finish a race. Alex finishes before Ben but behind Chris. David finishes before Eric but behind Ben. Who finished in third place?',
+    options: ['Alex', 'Ben', 'Chris', 'David'],
+    correctAnswer: 1, // Order: Chris, Alex, Ben, David, Eric
+    difficulty: 3,
+    timeLimit: 45,
   },
   {
     id: 9,
-    type: 'pattern',
-    question: 'What comes next? 3, 6, 11, 18, 27, __',
-    options: ['36', '38', '39', '42'],
-    correctAnswer: 1,
+    type: 'math',
+    question: 'If it takes 5 machines 5 minutes to make 5 widgets, how long would it take 100 machines to make 100 widgets?',
+    options: ['1 minute', '5 minutes', '20 minutes', '100 minutes'],
+    correctAnswer: 1, // 5 minutes (each machine makes 1 widget in 5 minutes)
     difficulty: 3,
-    timeLimit: 35,
+    timeLimit: 30,
   },
   {
     id: 10,
-    type: 'logic',
-    question: 'If it takes 5 machines 5 minutes to make 5 widgets, how long would it take 100 machines to make 100 widgets?',
-    options: ['1 minute', '5 minutes', '20 minutes', '100 minutes'],
-    correctAnswer: 1,
+    type: 'spatial',
+    question: 'Imagine a 3x3x3 solid cube made of 27 smaller blocks. If you paint the entire outside of the large cube blue, how many of the smaller blocks will have exactly ONE side painted blue?',
+    options: ['4', '6', '8', '12'],
+    correctAnswer: 1, // 6 (The center block on each of the 6 faces)
     difficulty: 4,
     timeLimit: 45,
   },
-
-  // Harder (11-16) - Challenge zone
   {
     id: 11,
     type: 'pattern',
-    question: 'What comes next? 2, 6, 12, 20, 30, __',
-    options: ['40', '42', '44', '46'],
-    correctAnswer: 1,
+    question: 'What comes next? Z, X, U, Q, __',
+    options: ['M', 'L', 'K', 'J'],
+    correctAnswer: 1, // L (Skip 1 letter, then 2, then 3, then 4)
     difficulty: 3,
-    timeLimit: 35,
+    timeLimit: 30,
   },
   {
     id: 12,
-    type: 'spatial',
-    question: 'A cube has 6 faces. How many edges does it have?',
-    options: ['8', '10', '12', '14'],
-    correctAnswer: 2,
-    difficulty: 3,
-    timeLimit: 30,
+    type: 'verbal',
+    question: 'Which word does NOT belong with the others?',
+    options: ['Benevolent', 'Magnanimous', 'Altruistic', 'Solipsistic'],
+    correctAnswer: 3, // Solipsistic (Self-centered, others are generous)
+    difficulty: 4,
+    timeLimit: 25,
   },
+
+  // --- HARD (13-17): The separator questions for higher percentiles ---
   {
     id: 13,
-    type: 'verbal',
-    question: 'Find the odd one out:',
-    options: ['Whale', 'Shark', 'Dolphin', 'Seal'],
-    correctAnswer: 1,
-    difficulty: 3,
-    timeLimit: 25,
+    type: 'math',
+    question: 'A water lily doubles in size every day. It takes 48 days for the lily to completely cover a pond. How long did it take for the lily to cover exactly half the pond?',
+    options: ['24 days', '47 days', '12 days', '46 days'],
+    correctAnswer: 1, // 47 days
+    difficulty: 4,
+    timeLimit: 30,
   },
   {
     id: 14,
-    type: 'math',
-    question: 'If 3x + 7 = 22, what is x?',
-    options: ['3', '4', '5', '6'],
-    correctAnswer: 2,
-    difficulty: 3,
-    timeLimit: 30,
+    type: 'logic',
+    question: 'You are looking at a photograph of a man. You have no brothers or sisters. The father of the man in the photograph is your father\'s son. Who is in the photograph?',
+    options: ['Your father', 'Yourself', 'Your son', 'Your nephew'],
+    correctAnswer: 2, // Your son ("your father's son" is you, so the man's father is you)
+    difficulty: 4,
+    timeLimit: 50,
   },
   {
     id: 15,
-    type: 'logic',
-    question: 'In a race, you overtake the person in 2nd place. What position are you in now?',
-    options: ['1st', '2nd', '3rd', '4th'],
-    correctAnswer: 1,
-    difficulty: 3,
-    timeLimit: 30,
+    type: 'pattern',
+    question: 'What comes next? 3, 4, 8, 17, 33, 58, __',
+    options: ['88', '92', '94', '102'],
+    correctAnswer: 2, // 94 (Differences: 1, 4, 9, 16, 25, 36)
+    difficulty: 4,
+    timeLimit: 45,
   },
   {
     id: 16,
-    type: 'pattern',
-    question: 'What comes next? 1, 4, 9, 16, 25, __',
-    options: ['30', '34', '36', '49'],
-    correctAnswer: 2,
-    difficulty: 3,
-    timeLimit: 30,
+    type: 'math',
+    question: 'Let $x$ and $y$ be positive integers. If $x^2 - y^2 = 13$, what is the value of $x$?',
+    options: ['5', '6', '7', '8'],
+    correctAnswer: 2, // 7. Factors of 13 are 13 and 1. (x-y)(x+y) = 13. x+y=13, x-y=1. 2x=14, x=7.
+    difficulty: 4,
+    timeLimit: 60,
   },
-
-  // Difficult (17-20) - Elite filter
   {
     id: 17,
-    type: 'logic',
-    question: 'A farmer has 17 sheep. All but 9 run away. How many sheep does he have left?',
-    options: ['8', '9', '17', '0'],
-    correctAnswer: 1,
-    difficulty: 4,
-    timeLimit: 30,
+    type: 'spatial',
+    question: 'An analog clock displays the time as exactly 3:15. What is the angle in degrees between the hour hand and the minute hand?',
+    options: ['0°', '7.5°', '15°', '22.5°'],
+    correctAnswer: 1, // 7.5° (Minute hand is at 90°, hour hand has moved 1/4 of the way between 3 and 4: 90° + 7.5°)
+    difficulty: 5,
+    timeLimit: 60,
   },
+
+  // --- ELITE (18-20): High cognitive load, strict time limits ---
   {
     id: 18,
-    type: 'math',
-    question: 'What is 15% of 15% of 1000?',
-    options: ['15', '22.5', '30', '225'],
-    correctAnswer: 1,
-    difficulty: 4,
-    timeLimit: 40,
+    type: 'logic',
+    question: 'You have 12 seemingly identical coins. One is counterfeit and weighs slightly more or less than the others. Using a balance scale, what is the absolute minimum number of weighings required to guarantee you find the fake coin?',
+    options: ['2', '3', '4', '5'],
+    correctAnswer: 1, // 3 weighings
+    difficulty: 5,
+    timeLimit: 45, // Time limit is strict here so they can't physically map out the whole tree
   },
   {
     id: 19,
     type: 'pattern',
-    question: 'What comes next? 1, 2, 6, 24, 120, __',
-    options: ['240', '480', '620', '720'],
-    correctAnswer: 3,
+    question: 'Find the missing number in the sequence: 10, 9, 60, 90, 70, 66, __',
+    options: ['96', '10', '12', '14'],
+    correctAnswer: 0, // 96 (Ten(3), Nine(4), Sixty(5), Ninety(6), Seventy(7), Sixty-six(8), Ninety-six(9 letters))
     difficulty: 5,
-    timeLimit: 45,
+    timeLimit: 60,
   },
   {
     id: 20,
-    type: 'logic',
-    question: 'Two fathers and two sons go fishing. They each catch one fish. They bring home 3 fish. How is this possible?',
-    options: [
-      'One fish escaped',
-      'They are grandfather, father, and son',
-      'They threw one back',
-      'This is impossible'
-    ],
-    correctAnswer: 1,
+    type: 'math',
+    question: 'A train leaves New York for Boston traveling at 60 mph. At the exact same time, a train leaves Boston for New York traveling at 80 mph. The distance between the cities is 280 miles. When the trains meet, which one is closer to Boston?',
+    options: ['The train from New York', 'The train from Boston', 'They are at the same distance', 'Cannot be determined'],
+    correctAnswer: 2, // When they meet, they are at the exact same location.
     difficulty: 5,
-    timeLimit: 45,
+    timeLimit: 30, // Tricking them into doing complex math instead of realizing the semantic trick
   },
 ];
 
 export function calculateIQ(correctAnswers: number, totalQuestions: number): { iq: number; percentile: number } {
-  // IQ calculation based on percentage correct, scaled to standard IQ distribution
-  // Mean = 100, SD = 15
+  // Deterministic calculation for SaaS reliability
   const percentage = correctAnswers / totalQuestions;
 
-  // Map percentage to IQ range (roughly 70-145)
-  // Using a curve that makes most people land 95-115
-  let iq: number;
+  // Base IQ mapping (70 to 140 range)
+  const iq = Math.round(70 + (percentage * 70)); 
 
-  if (percentage >= 0.95) {
-    iq = 135 + Math.floor(Math.random() * 10); // 135-145
-  } else if (percentage >= 0.85) {
-    iq = 125 + Math.floor((percentage - 0.85) * 100); // 125-135
-  } else if (percentage >= 0.70) {
-    iq = 110 + Math.floor((percentage - 0.70) * 100); // 110-125
-  } else if (percentage >= 0.50) {
-    iq = 95 + Math.floor((percentage - 0.50) * 75); // 95-110
-  } else if (percentage >= 0.30) {
-    iq = 85 + Math.floor((percentage - 0.30) * 50); // 85-95
-  } else {
-    iq = 70 + Math.floor(percentage * 50); // 70-85
-  }
-
-  // Add small random variance for realism
-  iq += Math.floor(Math.random() * 5) - 2;
-
-  // Calculate percentile from IQ
-  // Using standard normal distribution approximation
+  // Calculate standard score (z-score) based on Mean 100, SD 15
   const z = (iq - 100) / 15;
-  let percentile: number;
 
-  if (z >= 2) percentile = 98;
-  else if (z >= 1.5) percentile = 93;
-  else if (z >= 1) percentile = 84;
-  else if (z >= 0.5) percentile = 69;
-  else if (z >= 0) percentile = 50;
-  else if (z >= -0.5) percentile = 31;
-  else if (z >= -1) percentile = 16;
-  else if (z >= -1.5) percentile = 7;
-  else percentile = 2;
-
-  // Add variance to percentile
-  percentile += Math.floor(Math.random() * 5) - 2;
+  // Approximate the Standard Normal CDF to get an accurate percentile
+  const percentileDec = 0.5 * (1 + Math.sign(z) * Math.sqrt(1 - Math.exp(-2 * z * z / Math.PI)));
+  let percentile = Math.round(percentileDec * 100);
+  
+  // Floor/ceiling bounds
   percentile = Math.max(1, Math.min(99, percentile));
 
   return { iq, percentile };
