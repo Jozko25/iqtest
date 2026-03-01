@@ -1,11 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0a0b;
-  --foreground: #fafafa;
+  --background: #09090b;
+  --foreground: #e4e4e7;
   --muted: #71717a;
-  --accent: #3b82f6;
-  --card: #18181b;
+  --card: #131316;
   --border: #27272a;
 }
 
@@ -22,12 +21,10 @@ body {
   color: var(--foreground);
   min-height: 100vh;
   min-height: 100dvh;
-  font-feature-settings: "ss01", "ss02", "cv01";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Minimal scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -46,7 +43,6 @@ body {
   background: #52525b;
 }
 
-/* Clean button press effect */
 .btn-press {
   transition: transform 0.1s ease;
 }
@@ -55,7 +51,6 @@ body {
   transform: scale(0.98);
 }
 
-/* Subtle fade in */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
@@ -65,7 +60,89 @@ body {
   animation: fadeIn 0.4s ease-out forwards;
 }
 
-/* Timer warning pulse */
+/* Landing page reveal animations */
+@keyframes reveal {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes revealUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes scaleReveal {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes maskReveal {
+  from {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0;
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
+@keyframes subtlePulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.animate-reveal {
+  opacity: 0;
+  animation: reveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-reveal-up {
+  opacity: 0;
+  animation: revealUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-scale-reveal {
+  opacity: 0;
+  animation: scaleReveal 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-mask-reveal {
+  opacity: 0;
+  animation: maskReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-subtle-pulse {
+  animation: subtlePulse 3s ease-in-out infinite;
+}
+
+.animation-delay-100 { animation-delay: 100ms; }
+.animation-delay-200 { animation-delay: 200ms; }
+.animation-delay-300 { animation-delay: 300ms; }
+.animation-delay-400 { animation-delay: 400ms; }
+.animation-delay-500 { animation-delay: 500ms; }
+.animation-delay-600 { animation-delay: 600ms; }
+
 @keyframes timerPulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.5; }
@@ -75,17 +152,78 @@ body {
   animation: timerPulse 0.5s ease-in-out infinite;
 }
 
-/* Progress bar fill */
 .progress-fill {
   transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Card hover */
 .card-hover {
   transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
-/* Safe area for mobile */
 .safe-bottom {
   padding-bottom: env(safe-area-inset-bottom, 16px);
+}
+
+input[type="range"].slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background: #27272a;
+  border-radius: 9999px;
+}
+
+input[type="range"].slider-thumb::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 28px;
+  height: 28px;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  transition: transform 0.15s ease;
+}
+
+input[type="range"].slider-thumb::-webkit-slider-thumb:active {
+  transform: scale(1.1);
+}
+
+input[type="range"].slider-thumb::-moz-range-thumb {
+  width: 28px;
+  height: 28px;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes slideDown {
+  0% { opacity: 0; transform: translate(-50%, -20px); }
+  10% { opacity: 1; transform: translate(-50%, 0); }
+  90% { opacity: 1; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, -10px); }
+}
+
+.animate-slideDown {
+  animation: slideDown 2.5s ease-out forwards;
+}
+
+@keyframes slideUp {
+  0% { opacity: 0; transform: translate(-50%, 20px); }
+  10% { opacity: 1; transform: translate(-50%, 0); }
+  90% { opacity: 1; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, 10px); }
+}
+
+.animate-slideUp {
+  animation: slideUp 2.5s ease-out forwards;
+}
+
+@keyframes slideInNotification {
+  0% { opacity: 0; transform: translateY(-5px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slideInNotification {
+  animation: slideInNotification 0.3s ease-out forwards;
 }

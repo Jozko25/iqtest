@@ -7,24 +7,24 @@ import MetaPixel from "@/components/MetaPixel";
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
+  weight: ["400", "500", "600"],
 });
-
-export const metadata: Metadata = {
-  title: "IQ Score - Cognitive Assessment",
-  description: "A 20-question cognitive assessment measuring pattern recognition, logic, and problem solving ability.",
-  openGraph: {
-    title: "IQ Score - Cognitive Assessment",
-    description: "Measure your cognitive ability with our 20-question assessment.",
-    type: "website",
-  },
-};
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
-  themeColor: "#0a0a0b",
+  themeColor: "#09090b",
+};
+
+export const metadata: Metadata = {
+  title: "IQ Score",
+  description: "Cognitive assessment — get your calibrated IQ estimate in minutes.",
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -34,7 +34,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased bg-[#0a0a0b] text-white`}>
+      <body className={`${inter.className} antialiased bg-[#09090b] text-white`}>
         <MetaPixel />
         <Analytics />
         {children}
